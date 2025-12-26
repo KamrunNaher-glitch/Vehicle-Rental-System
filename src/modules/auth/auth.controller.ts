@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { authServices } from "./auth.service";
 
-
 const createUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.createUser(req.body);

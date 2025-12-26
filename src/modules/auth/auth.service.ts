@@ -1,9 +1,7 @@
 import bcrypt from "bcryptjs";
-
+import { pool } from "../../config/db";
 import jwt from "jsonwebtoken";
-import config from "../config";
-import { pool } from "../config/db";
-
+import config from "../../config";
 const createUser = async (payload: Record<string, unknown>) => {
   const { name, email, password, role, phone } = payload;
   const hashedPass = await bcrypt.hash(password as string, 10);
@@ -36,7 +34,7 @@ const loginUser = async (email: string, password: string) => {
       role: user.role,
     },
     config.jwtSecret as string,
-    { expiresIn: "7d" }
+    { expiresIn: "5d" }
   );
   delete result.rows[0].password;
   
